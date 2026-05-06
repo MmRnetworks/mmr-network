@@ -7,37 +7,24 @@
 
 <style>
 body {
+  font-family: Arial;
   margin: 0;
-  font-family: Arial, sans-serif;
   background: #f4f7fb;
 }
 
-/* HEADER */
 header {
   background: #0a3d62;
   padding: 15px;
   text-align: center;
+  color: white;
 }
 
-.logo {
-  width: 200px;
-}
-
-/* HERO */
-.hero {
-  text-align: center;
-  padding: 60px 20px;
-}
-
-.hero h1 {
-  margin-bottom: 10px;
-}
-
-/* FORM */
 .container {
   max-width: 500px;
-  margin: auto;
+  margin: 50px auto;
   padding: 20px;
+  background: white;
+  border-radius: 10px;
 }
 
 input, select {
@@ -53,11 +40,6 @@ button {
   color: white;
   border: none;
   cursor: pointer;
-  border-radius: 5px;
-}
-
-button:disabled {
-  background: gray;
 }
 </style>
 </head>
@@ -65,55 +47,46 @@ button:disabled {
 <body>
 
 <header>
-  <img src="logo.png" class="logo">
+  <h2>MMR Network Application</h2>
 </header>
-
-<div class="hero">
-  <h1>High-Speed Internet Application</h1>
-  <p>Fill out the form below</p>
-</div>
 
 <div class="container">
 
-  <form id="applyFormData">
+  <form id="form">
 
     <input type="text" placeholder="Full Name" required>
     <input type="text" placeholder="Address" required>
-    <input type="tel" placeholder="Phone Number" required>
+    <input type="tel" placeholder="Phone" required>
 
     <select required>
       <option value="">Select Plan</option>
-      <option>50 Mbps - ₱850</option>
-      <option>100 Mbps - ₱1299</option>
-      <option>300 Mbps - Coming Soon</option>
+      <option>50 Mbps</option>
+      <option>100 Mbps</option>
+      <option>300 Mbps</option>
     </select>
 
-    <button type="submit" id="submitBtn">Submit Application</button>
+    <button type="submit" id="btn">Submit Application</button>
 
   </form>
 
 </div>
 
 <script>
-document.addEventListener("DOMContentLoaded", function () {
-  const form = document.getElementById("applyFormData");
-  const btn = document.getElementById("submitBtn");
+document.getElementById("form").addEventListener("submit", function(e) {
+  e.preventDefault();
 
-  form.addEventListener("submit", function (e) {
-    e.preventDefault();
+  const btn = document.getElementById("btn");
 
-    btn.disabled = true;
-    btn.innerText = "Submitting...";
+  btn.disabled = true;
+  btn.innerText = "Submitted";
 
-    setTimeout(() => {
-      alert("Application submitted successfully!");
+  setTimeout(() => {
+    alert("Application submitted successfully!");
+    this.reset();
 
-      form.reset();
-
-      btn.disabled = false;
-      btn.innerText = "Submit Application";
-    }, 700);
-  });
+    btn.disabled = false;
+    btn.innerText = "Submit Application";
+  }, 600);
 });
 </script>
 
