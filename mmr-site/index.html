@@ -67,7 +67,6 @@ button {
       <option>Premium</option>
     </select>
 
-    <!-- Button does NOTHING -->
     <button type="submit">Submit Application</button>
 
   </form>
@@ -78,8 +77,10 @@ button {
 document.getElementById("form").addEventListener("submit", function(e) {
   e.preventDefault();
 
-  // INTENTIONALLY EMPTY
-  // nothing happens on submit
+  // simulate success only (no backend, no requests)
+  alert("Application submitted successfully!");
+
+  this.reset();
 });
 </script>
 
