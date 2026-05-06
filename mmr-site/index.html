@@ -2,314 +2,120 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>MMR Network and Data Solution</title>
+<title>MMR Network</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
 body {
   margin: 0;
-  font-family: 'Segoe UI', sans-serif;
-  background: linear-gradient(135deg, #e8f1ff, #f5f7fa);
+  font-family: Arial, sans-serif;
+  background: #f4f7fb;
 }
 
 /* HEADER */
-.topbar {
-  display: flex;
-  justify-content: center;
+header {
   background: #0a3d62;
   padding: 15px;
+  text-align: center;
 }
 
 .logo {
-  width: 100%;
-  max-width: 380px;
-  height: auto;
-
+  width: 200px;
 }
 
 /* HERO */
 .hero {
-  background: linear-gradient(120deg, #0a3d62, #1e6091);
-  color: white;
   text-align: center;
-  padding: 35px 20px 60px;
+  padding: 60px 20px;
 }
 
-.hero h2 {
-  font-size: 38px;
-  margin: 10px 0;
-}
-
-.btn {
-  padding: 12px 20px;
-  margin: 5px;
-  background: white;
-  color: #0a3d62;
-  border: none;
-  border-radius: 25px;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-.btn:hover {
-  background: #ffd166;
-}
-
-/* CONTENT */
-.container {
-  max-width: 1100px;
-  margin: auto;
-  padding: 40px 20px;
-}
-
-.section {
-  margin-bottom: 60px;
-  text-align: center;
-}
-
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 20px;
-}
-
-/* CARD */
-.card {
-  background: white;
-  padding: 25px;
-  border-radius: 15px;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
-}
-
-.price {
-  font-size: 26px;
-  font-weight: bold;
-  color: #1e6091;
-}
-
-.speed {
-  color: #555;
-}
-
-.cta {
-  display: inline-block;
-  margin-top: 10px;
-  padding: 10px 15px;
-  background: #0a3d62;
-  color: white;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.cta:hover {
-  background: #1e6091;
-}
-
-/* FOOTER */
-footer {
-  text-align: center;
-  padding: 20px;
-  background: #0a3d62;
-  color: white;
-}
-
-footer a {
-  color: #ffd166;
-  text-decoration: none;
-}
-
-/* MODAL */
-.modal {
-  display: none;
-  position: fixed;
-  z-index: 999;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.6);
-}
-
-.modal-content {
-  background: white;
-  margin: 5% auto;
-  padding: 25px;
-  width: 90%;
-  max-width: 500px;
-  border-radius: 10px;
-  max-height: 80vh;
-  overflow-y: auto;
-}
-
-.close {
-  float: right;
-  font-size: 22px;
-  cursor: pointer;
+.hero h1 {
+  margin-bottom: 10px;
 }
 
 /* FORM */
+.container {
+  max-width: 500px;
+  margin: auto;
+  padding: 20px;
+}
+
 input, select {
   width: 100%;
   padding: 10px;
   margin: 8px 0;
-  border-radius: 5px;
-  border: 1px solid #ccc;
 }
 
-.submit-btn {
+button {
   width: 100%;
   padding: 12px;
   background: #0a3d62;
   color: white;
   border: none;
-  border-radius: 5px;
   cursor: pointer;
+  border-radius: 5px;
+}
+
+button:disabled {
+  background: gray;
 }
 </style>
 </head>
 
 <body>
 
-<header class="topbar">
+<header>
   <img src="logo.png" class="logo">
 </header>
 
 <div class="hero">
-  <h2>High-Speed Internet You Can Trust</h2>
-  <button class="btn" onclick="scrollToId('services')">Services</button>
-  <button class="btn" onclick="scrollToId('pricing')">Pricing</button>
-  <button class="btn" onclick="scrollToId('contact')">Contact</button>
+  <h1>High-Speed Internet Application</h1>
+  <p>Fill out the form below</p>
 </div>
 
 <div class="container">
 
-<!-- SERVICES -->
-<div id="services" class="section">
-  <h2>Services</h2>
-  <div class="grid">
-    <div class="card">Fiber Installation</div>
-    <div class="card">Home Internet</div>
-    <div class="card">Business Internet</div>
-  </div>
-</div>
+  <form id="applyFormData">
 
-<!-- PRICING -->
-<div id="pricing" class="section">
-  <h2>Pricing</h2>
-  <div class="grid">
+    <input type="text" placeholder="Full Name" required>
+    <input type="text" placeholder="Address" required>
+    <input type="tel" placeholder="Phone Number" required>
 
-    <div class="card">
-      <p class="price">₱850</p>
-      <p class="speed">50 Mbps</p>
-      <a class="cta" onclick="openForm('₱850 - 50 Mbps')">Apply Now</a>
-    </div>
+    <select required>
+      <option value="">Select Plan</option>
+      <option>50 Mbps - ₱850</option>
+      <option>100 Mbps - ₱1299</option>
+      <option>300 Mbps - Coming Soon</option>
+    </select>
 
-    <div class="card">
-      <p class="price">₱1,299</p>
-      <p class="speed">100 Mbps</p>
-      <a class="cta" onclick="openForm('₱1,299 - 100 Mbps')">Apply Now</a>
-    </div>
+    <button type="submit" id="submitBtn">Submit Application</button>
 
-    <div class="card">
-      <p class="price">SOON</p>
-      <p class="speed">300 Mbps</p>
-      <a class="cta" onclick="openForm('SOON - 300 Mbps')">Apply Now</a>
-    </div>
-
-  </div>
-</div>
-
-<!-- CONTACT -->
-<div id="contact" class="section">
-  <h2>Contact</h2>
-  <div class="card">
-    <p><a href="https://facebook.com/mmr.networks" target="_blank">Facebook Page</a></p>
-    <p>+63 953 471 8893</p>
-    <p>Pagadian City, Philippines</p>
-  </div>
-</div>
+  </form>
 
 </div>
-
-<!-- APPLY FORM -->
-<div id="applyForm" class="modal">
-  <div class="modal-content">
-    <span class="close" onclick="closeForm()">&times;</span>
-    <h2>Internet Application</h2>
-
-    <form id="applyFormData">
-      <input name="name" type="text" placeholder="Full Name" required>
-      <input name="address" type="text" placeholder="Address" required>
-      <input name="phone" type="tel" placeholder="Phone Number" required>
-
-      <select name="plan" id="planSelect" required>
-        <option value="">Select Plan</option>
-        <option value="₱850 - 50 Mbps">₱850 - 50 Mbps</option>
-        <option value="₱1,299 - 100 Mbps">₱1,299 - 100 Mbps</option>
-        <option value="SOON - 300 Mbps">SOON - 300 Mbps</option>
-      </select>
-
-      <div class="cf-turnstile"
-     data-sitekey="0x4AAAAAADJg5AyFBN2z2UVU"
-     data-callback="enableSubmit"
-     data-expired-callback="disableSubmit"
-     data-theme="light">
-</div>
-
-      <button class="submit-btn" id="submitBtn" type="submit" disabled>
-  Verifying...</button>
-    </form>
-  </div>
-</div>
-
-<!-- TERMS -->
-<div id="termsModal" class="modal">
-  <div class="modal-content">
-    <span class="close" onclick="closeModal('termsModal')">&times;</span>
-    <h2>Terms & Conditions</h2>
-    <p>Service depends on availability. Billing must be paid on time.</p>
-  </div>
-</div>
-
-<!-- PRIVACY -->
-<div id="privacyModal" class="modal">
-  <div class="modal-content">
-    <span class="close" onclick="closeModal('privacyModal')">&times;</span>
-    <h2>Privacy Policy</h2>
-    <p>Your data is used only for service installation and support.</p>
-  </div>
-</div>
-
-<footer>
-  <p>&copy; 2026 MMR NETWORK</p>
-  <a href="#" onclick="openModal('termsModal')">Terms & Conditions</a> |
-  <a href="#" onclick="openModal('privacyModal')">Privacy Policy</a>
-</footer>
 
 <script>
 document.addEventListener("DOMContentLoaded", function () {
   const form = document.getElementById("applyFormData");
-  const submitBtn = document.getElementById("submitBtn");
+  const btn = document.getElementById("submitBtn");
 
   form.addEventListener("submit", function (e) {
     e.preventDefault();
 
-    // simulate success only (no backend)
-    submitBtn.disabled = true;
-    submitBtn.innerText = "Submitted";
+    btn.disabled = true;
+    btn.innerText = "Submitting...";
 
     setTimeout(() => {
       alert("Application submitted successfully!");
+
       form.reset();
 
-      submitBtn.disabled = false;
-      submitBtn.innerText = "Submit Application";
-    }, 800);
+      btn.disabled = false;
+      btn.innerText = "Submit Application";
+    }, 700);
   });
 });
 </script>
-
-<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 
 </body>
 </html>
