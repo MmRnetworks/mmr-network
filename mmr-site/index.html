@@ -287,104 +287,24 @@ input, select {
 </footer>
 
 <script>
-function enableSubmit() {
-  const btn = document.getElementById("submitBtn");
-  btn.disabled = false;
-  btn.innerText = "Submit Application";
-}
-
-function disableSubmit() {
-  const btn = document.getElementById("submitBtn");
-  btn.disabled = true;
-  btn.innerText = "Verify Again";
-}
-
-function openForm(plan){
-  const modal = document.getElementById("applyForm");
-  modal.style.display = "block";
-
-  document.getElementById("planSelect").value = plan;
-
-  // 🔥 Let modal fully render before Turnstile initializes
-  setTimeout(() => {
-    if (window.turnstile) {
-      turnstile.reset(); 
-    }
-  }, 300);
-}
-
-function closeForm(){
-  document.getElementById("applyForm").style.display = "none";
-}
-
-function openModal(id){
-  document.getElementById(id).style.display = "block";
-}
-
-function closeModal(id){
-  document.getElementById(id).style.display = "none";
-}
-
-function scrollToId(id){
-  document.getElementById(id).scrollIntoView({behavior:'smooth'});
-}
-
-window.onclick = function(e){
-  if(e.target.classList.contains("modal")){
-    e.target.style.display="none";
-  }
-};
-
 document.addEventListener("DOMContentLoaded", function () {
   const form = document.getElementById("applyFormData");
   const submitBtn = document.getElementById("submitBtn");
 
-  form.addEventListener("submit", async function(e) {
+  form.addEventListener("submit", function (e) {
     e.preventDefault();
 
-    const token = form.querySelector('[name="cf-turnstile-response"]');
-
-    if (!token || !token.value) {
-      alert("Please verify that you are human first.");
-      return;
-    }
-
+    // simulate success only (no backend)
     submitBtn.disabled = true;
-    submitBtn.innerText = "Submitting...";
+    submitBtn.innerText = "Submitted";
 
-    try {
-      const formData = new FormData(form);
-
-      const res = await fetch("/submit", {
-        method: "POST",
-        body: formData
-      });
-
-      const text = await res.text();
-
-if (!text || text.trim() === "" || text.trim() === "OK") {
-  document.getElementById("successMsg").style.display = "block";
-} else {
-  alert(text);
-  return;
-}
-
-closeForm();
-form.reset();
-
-submitBtn.innerText = "Submit Application";
-submitBtn.disabled = true;
-
-if (window.turnstile) {
-  turnstile.reset();
-}
-
-    } catch (err) {
-      alert("Something went wrong. Try again.");
+    setTimeout(() => {
+      alert("Application submitted successfully!");
+      form.reset();
 
       submitBtn.disabled = false;
       submitBtn.innerText = "Submit Application";
-    }
+    }, 800);
   });
 });
 </script>
